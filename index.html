@@ -1854,31 +1854,6 @@
                                 style="background:linear-gradient(135deg,#2ECC8A,#27AE73);color:#071810;border:none;"
                                 onclick="showToast('Attendance recorded ✅','success')">💾 Save Attendance</button>
                         </div>
-                        <div id="admin-only-finance" class="card"
-                            style="padding:24px; background:linear-gradient(135deg, rgba(139, 92, 246, 0.05), #fff); border:1px solid rgba(139, 92, 246, 0.1);">
-                            <h3
-                                style="color:var(--purple); font-size:16px; margin-bottom:15px; display:flex; align-items:center; gap:10px;">
-                                <span>💰</span> Financial Intelligence (AI Forecast)
-                            </h3>
-                            <div style="display:flex; flex-direction:column; gap:12px;">
-                                <div style="display:flex; justify-content:space-between; align-items:flex-end;">
-                                    <div>
-                                        <div style="font-size:11px; color:var(--muted); text-transform:uppercase;">
-                                            60-Day Collection Forecast</div>
-                                        <div style="font-size:24px; font-weight:800; color:var(--text);">₹84.2 Lakhs
-                                        </div>
-                                    </div>
-                                    <div style="font-size:12px; color:var(--accent); font-weight:700;">↑ 92% Recovery
-                                        Rate</div>
-                                </div>
-                                <div class="progress-bar" style="height:10px;">
-                                    <div class="progress-fill" style="width:92%; background:var(--purple);"></div>
-                                </div>
-                                <p style="font-size:12px; color:var(--text2); line-height:1.5; margin:0;">AI predicts
-                                    high collection stability based on historical patterns. Recommend prioritizing 12
-                                    high-value pending accounts for 100% target achievement.</p>
-                            </div>
-                        </div>
                     </div>
                     <div class="card">
                         <div class="card-header">
@@ -2416,8 +2391,6 @@
             if (pageId === 'page-reports') renderReportsTable();
             if (pageId === 'page-overview') {
                 setTimeout(initOverviewCharts, 100);
-                const finCard = document.getElementById('admin-only-finance');
-                if (finCard) finCard.style.display = currentUser.tier.includes(3) ? 'block' : 'none';
             }
         }
 
