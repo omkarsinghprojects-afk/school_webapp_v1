@@ -758,6 +758,41 @@
         @media(max-width:768px) {
             .mobile-toggle {
                 display: block !important;
+                z-index: 6000;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -260px;
+                top: 0;
+                bottom: 0;
+                z-index: 5000;
+                background: var(--surface);
+                width: 260px;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                display: block !important;
+                box-shadow: 10px 0 40px rgba(0, 0, 0, 0.15);
+                padding-top: 20px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .sidebar-header {
+                padding: 10px 20px 25px 20px;
+                border-bottom: 1px solid var(--border);
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .main {
+                margin-left: 0 !important;
+                width: 100% !important;
+                padding: 12px !important;
+                overflow-x: hidden;
             }
 
             .grid-2,
@@ -765,10 +800,6 @@
             .stat-grid,
             .faculty-grid {
                 grid-template-columns: 1fr !important;
-            }
-
-            .sidebar {
-                display: none;
             }
         }
 
@@ -1385,6 +1416,29 @@
             margin-left: 3px;
         }
 
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            margin-right: 15px;
+            color: var(--text);
+            padding: 5px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .mobile-close {
+            display: none;
+        }
+
+        @media(max-width:768px) {
+            .mobile-close {
+                display: block !important;
+            }
+        }
+
         /* ════════════════ TABS ════════════════ */
         .tabs {
             display: flex;
@@ -1719,7 +1773,7 @@
     <div id="app">
         <div class="topbar">
             <div class="topbar-brand">
-                <button class="mobile-toggle" onclick="toggleSidebar()" style="display:none; background:none; border:none; font-size:24px; cursor:pointer; margin-right:15px; color:var(--text);">☰</button>
+                <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
                 <div class="dot">🏫</div>
                 <span>AtriOm AI</span>
             </div>
@@ -1731,7 +1785,13 @@
         </div>
 
         <div class="layout">
-            <div class="sidebar" id="sidebar"></div>
+            <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header" style="display:flex; justify-content:space-between; align-items:center;">
+                <h2 style="margin:0; font-size:18px; color:var(--text); font-weight:800;">Navigation</h2>
+                <button class="mobile-close" onclick="toggleSidebar()" style="display:none; background:none; border:none; font-size:24px; color:var(--muted); cursor:pointer;">✕</button>
+            </div>
+            <nav id="sidebar-nav"></nav>
+            </aside>
             <div class="main" id="main">
 
                 <!-- TIER 1: CHATBOT -->
@@ -2380,6 +2440,7 @@
             else { navigateTo('page-leads'); }
             initLeadsChart();
             if (user.tier.includes(3)) { faculty = FACULTY_SAMPLE.slice(); renderFacultyGrid(); }
+            checkBotVisibility();
             setTimeout(initOverviewCharts, 200);
         }
         function logout() {
@@ -2389,11 +2450,23 @@
             document.getElementById('email-in').value = '';
             document.getElementById('pass-in').value = '';
             document.getElementById('login-err').textContent = '';
+            checkBotVisibility();
         }
 
         function toggleSidebar() {
             const s = document.getElementById('sidebar');
             if (s) s.classList.toggle('active');
+        }
+
+        function checkBotVisibility() {
+            const bot = document.getElementById('float-bot');
+            if (!bot) return;
+            // Hide for Teacher (2) or Students (if applicable)
+            if (currentUser && (currentUser.tier.includes(2) || currentUser.tier.includes(4))) {
+                bot.style.display = 'none';
+            } else {
+                bot.style.display = 'flex';
+            }
         }
 
         // ===================== NAV =====================
@@ -2426,7 +2499,8 @@
           <div class="nav-item" onclick="navigateTo('page-overview')" data-page="page-overview"><span class="icon">🏫</span>School Overview</div>
         </div>`;
             }
-            document.getElementById('sidebar').innerHTML = html;
+            const nav = document.getElementById('sidebar-nav');
+            if (nav) nav.innerHTML = html;
         }
         function navigateTo(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -3292,6 +3366,8 @@
 
             if (container) container.innerHTML = summary.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         }
+        // Initial setup
+        checkBotVisibility();
     </script>
 </body>
 
