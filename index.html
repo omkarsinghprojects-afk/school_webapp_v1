@@ -756,10 +756,15 @@
         }
 
         @media(max-width:768px) {
+            .mobile-toggle {
+                display: block !important;
+            }
 
             .grid-2,
-            .grid-3 {
-                grid-template-columns: 1fr;
+            .grid-3,
+            .stat-grid,
+            .faculty-grid {
+                grid-template-columns: 1fr !important;
             }
 
             .sidebar {
@@ -1231,6 +1236,13 @@
 
         canvas {
             max-width: 100%;
+            height: auto !important;
+        }
+
+        @media(max-width:768px) {
+            canvas {
+                height: 240px !important;
+            }
         }
 
         /* Heatmap */
@@ -1472,8 +1484,10 @@
         }
 
         @media(max-width:900px) {
-            .overview-grid {
-                grid-template-columns: 1fr;
+            .overview-grid,
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -1705,6 +1719,7 @@
     <div id="app">
         <div class="topbar">
             <div class="topbar-brand">
+                <button class="mobile-toggle" onclick="toggleSidebar()" style="display:none; background:none; border:none; font-size:24px; cursor:pointer; margin-right:15px; color:var(--text);">☰</button>
                 <div class="dot">🏫</div>
                 <span>AtriOm AI</span>
             </div>
@@ -1836,21 +1851,20 @@
                             <div class="stat-change up">85% Conversion rate</div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header"><span class="card-title">All Leads</span><span id="leads-total-badge"
-                                class="tag tag-green">0 leads</span></div>
-                        <div class="table-wrap">
-                            <table>
-                                <thead>
+                    <div class="card" style="padding:0; overflow:hidden;">
+                        <div class="card-header"><span class="card-title">All Leads Registry</span><span id="leads-total-badge" class="tag tag-green">0 leads</span></div>
+                        <div style="overflow-x:auto; width:100%;">
+                            <table style="width:100%; min-width:800px; border-collapse:collapse;">
+                                <thead style="background:var(--surface2); border-bottom:1px solid var(--border);">
                                     <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Class Interested</th>
-                                        <th>Source</th>
-                                        <th>Status</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
+                                        <th style="padding:12px; text-align:left;">#</th>
+                                        <th style="padding:12px; text-align:left;">Name</th>
+                                        <th style="padding:12px; text-align:left;">Phone</th>
+                                        <th style="padding:12px; text-align:left;">Class Interested</th>
+                                        <th style="padding:12px; text-align:left;">Source</th>
+                                        <th style="padding:12px; text-align:left;">Status</th>
+                                        <th style="padding:12px; text-align:left;">Date</th>
+                                        <th style="padding:12px; text-align:left;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="leads-tbody"></tbody>
@@ -2375,6 +2389,11 @@
             document.getElementById('email-in').value = '';
             document.getElementById('pass-in').value = '';
             document.getElementById('login-err').textContent = '';
+        }
+
+        function toggleSidebar() {
+            const s = document.getElementById('sidebar');
+            if (s) s.classList.toggle('active');
         }
 
         // ===================== NAV =====================
