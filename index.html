@@ -1661,7 +1661,8 @@
             <div class="chat-container" style="border:none;border-radius:0;height:75vh;">
                 <div class="chat-header" style="display:flex;justify-content:space-between;align-items:center;">
                     <div>
-                        <h3 style="color:#fff;margin:0;font-size:16px;"><span class="online-dot"></span> SchoolBot (Public)</h3>
+                        <h3 style="color:#fff;margin:0;font-size:16px;"><span class="online-dot"></span> SchoolBot
+                            (Public)</h3>
                         <p style="color:rgba(255,255,255,0.8);margin:0;font-size:12px;">Admissions & Support</p>
                     </div>
                     <button class="modal-close" onclick="closeModal('modal-public-bot')">✕</button>
@@ -1673,12 +1674,27 @@
                         more.<br><br>कैसे मदद कर सकता हूँ?
                     </div>
                 </div>
+                <div class="chat-quick-btns" id="quick-btns">
+                    <button class="quick-btn" onclick="sendQuick('Admissions info', 'public')">Admissions</button>
+                    <button class="quick-btn" onclick="sendQuick('Fees structure', 'public')">Fees</button>
+                    <button class="quick-btn" onclick="sendQuick('Academics', 'public')">Academics</button>
+                    <button class="quick-btn" onclick="sendQuick('Facilities', 'public')">Facilities</button>
+                </div>
                 <div class="chat-input-row" style="gap:10px;">
                     <input type="text" id="chat-in-public" placeholder="Type your message…"
                         onkeydown="if(event.key==='Enter')sendChat('public')" />
                     <button class="btn btn-primary" onclick="sendChat('public')">Send</button>
-                    <button class="btn" onclick="clearChat('chat-messages-public'); this.classList.add('rotating'); setTimeout(()=>this.classList.remove('rotating'),600)" style="padding:0; min-width:42px; width:42px; height:42px; border-radius:12px; background:var(--rose); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(239, 68, 68, 0.2); transition:all 0.3s;" title="Clear Chat">
-                        <svg class="refresh-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+                    <button class="btn"
+                        onclick="clearChat('chat-messages-public'); this.classList.add('rotating'); setTimeout(()=>this.classList.remove('rotating'),600)"
+                        style="padding:0; min-width:42px; width:42px; height:42px; border-radius:12px; background:var(--rose); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(239, 68, 68, 0.2); transition:all 0.3s;"
+                        title="Clear Chat">
+                        <svg class="refresh-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                            <path d="M21 3v5h-5"></path>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                            <path d="M3 21v-5h5"></path>
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -1724,22 +1740,29 @@
                                     classes, and more.<br><br>कैसे मदद कर सकता हूँ? / நான் உங்களுக்கு எப்படி உதவலாம்?
                                 </div>
                             </div>
-                            <div class="chat-quick-btns" id="quick-btns">
-                                <button class="quick-btn" onclick="sendQuick('Admissions info')">Admissions
-                                    info</button>
-                                <button class="quick-btn" onclick="sendQuick('Fee structure')">Fee structure</button>
-                                <button class="quick-btn" onclick="sendQuick('Classes available')">Classes
-                                    available</button>
-                                <button class="quick-btn" onclick="sendQuick('Enrol my child')">Enrol my child</button>
-                                <button class="quick-btn" onclick="sendQuick('School timings')">School timings</button>
+                            <div class="chat-quick-btns">
+                                <button class="quick-btn" onclick="sendQuick('Enrol my child')">Enrolment</button>
+                                <button class="quick-btn" onclick="sendQuick('Fee details')">Fees</button>
+                                <button class="quick-btn" onclick="sendQuick('Academic calendar')">Academics</button>
+                                <button class="quick-btn" onclick="sendQuick('Facilities')">Facilities</button>
                             </div>
                             <div class="chat-typing-container" id="chat-typing-container"></div>
                             <div class="chat-input-row" style="gap:10px;">
                                 <input type="text" id="chat-in" placeholder="Type your message…"
                                     onkeydown="if(event.key==='Enter')sendChat()" />
                                 <button class="btn btn-primary" onclick="sendChat()">Send</button>
-                                <button class="btn" onclick="clearChat('chat-messages'); this.classList.add('rotating'); setTimeout(()=>this.classList.remove('rotating'),600)" style="padding:0; min-width:42px; width:42px; height:42px; border-radius:12px; background:var(--rose); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(239, 68, 68, 0.2); transition:all 0.3s;" title="Clear Chat">
-                                    <svg class="refresh-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+                                <button class="btn"
+                                    onclick="clearChat('chat-messages'); this.classList.add('rotating'); setTimeout(()=>this.classList.remove('rotating'),600)"
+                                    style="padding:0; min-width:42px; width:42px; height:42px; border-radius:12px; background:var(--rose); color:#fff; border:none; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(239, 68, 68, 0.2); transition:all 0.3s;"
+                                    title="Clear Chat">
+                                    <svg class="refresh-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                        <path d="M21 3v5h-5"></path>
+                                        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                        <path d="M3 21v-5h5"></path>
+                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -2103,7 +2126,13 @@
                         <button class="btn-sm"
                             onclick="this.classList.add('rotating'); generateAiProgressSummary(editStudentId); setTimeout(()=>this.classList.remove('rotating'),600)"
                             style="background:var(--accent); color:#fff; border:none; padding:8px 16px; border-radius:30px; font-size:12px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:8px; box-shadow:0 4px 15px rgba(16, 185, 129, 0.25); border:1px solid rgba(255,255,255,0.1); transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
-                            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
+                            <svg class="refresh-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                                <path d="M21 3v5h-5"></path>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                                <path d="M3 21v-5h5"></path>
+                            </svg>
                             Regenerate Insight
                         </button>
                     </div>
@@ -2781,24 +2810,24 @@
             addChatMsg(msg, 'user', type); showTyping(type);
             setTimeout(() => processBot(msg, type), 700 + Math.random() * 500);
         }
-        function sendQuick(text, type = 'main') { 
+        function sendQuick(text, type = 'main') {
             const inputId = type === 'public' ? 'chat-in-public' : 'chat-in';
-            document.getElementById(inputId).value = text; 
-            sendChat(type); 
+            document.getElementById(inputId).value = text;
+            sendChat(type);
         }
         function addChatMsg(text, who, type = 'main') {
             const containerId = type === 'public' ? 'chat-messages-public' : 'chat-messages';
             const div = document.createElement('div'); div.className = `chat-bubble ${who}`;
             if (who === 'bot') { div.innerHTML = `<div class="bot-name">SchoolBot</div>${text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}`; }
             else { div.textContent = text; }
-            const msgs = document.getElementById(containerId); 
+            const msgs = document.getElementById(containerId);
             if (msgs) { msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight; }
         }
         function showTyping(type = 'main') {
             const containerId = type === 'public' ? 'chat-messages-public' : 'chat-messages';
             const div = document.createElement('div'); div.className = 'chat-typing'; div.id = 'chat-typing-' + type;
             div.innerHTML = '<span></span><span></span><span></span>';
-            const msgs = document.getElementById(containerId); 
+            const msgs = document.getElementById(containerId);
             if (msgs) { msgs.appendChild(div); msgs.scrollTop = 999999; }
         }
         function removeTyping(type = 'main') {
